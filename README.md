@@ -26,8 +26,7 @@ Hệ thống hoạt động theo mô hình Client-Server:
 
 Mô hình Llama-3-8B yêu cầu GPU — thường chạy trên Google Colab và được expose bằng `ngrok`. Nếu bạn có template Colab, dùng nó; nếu không, bạn có hai lựa chọn:
 
-- Chạy một server LLM có sẵn và đặt `LLM_API_BASE_URL` tới endpoint đó (khuyên dùng để test nhanh).
-- Hoàn thành một Colab notebook theo hướng dẫn trong `EVALUATION.md` (mẫu Colab **không** được ship nguyên vẹn trong repo này).
+- Chạy một server LLM có sẵn và đặt `LLM_API_BASE_URL` tới endpoint đó.
 
 Nếu bạn sử dụng Colab, những bước chính là:
 
