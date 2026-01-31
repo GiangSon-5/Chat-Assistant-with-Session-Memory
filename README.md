@@ -70,21 +70,7 @@ pip install -r requirements.txt
 ```
 
 **Bước 3: Cấu hình biến môi trường**
-Tạo file `.env` tại thư mục gốc. (Lưu ý: repository hiện **không** chứa `.env.example` — tạo file thủ công theo mẫu bên dưới.)
-
-- Windows (cmd):
-
-```powershell
-copy .env.example .env  # nếu bạn có file mẫu
-# hoặc tạo file mới bằng notepad .env
-```
-
-- PowerShell / Mac / Linux:
-
-```bash
-# Tạo file mới bằng editor:
-nano .env
-```
+Tạo file `.env` tại thư mục gốc.
 
 Ví dụ tối thiểu của `.env` (thay `...` bằng giá trị thực):
 
@@ -172,7 +158,7 @@ chat-assistant-backend/
 ├── requirements.txt            # Danh sách thư viện Python cần thiết.
 ├── run_server.py               # (placeholder) local server script — không kèm Colab template.
 └── README.md                   # Tài liệu hướng dẫn sử dụng (File này).
-└── colab_server.ipynb          # Host model LLM3
+└── colab_server.ipynb          # Host model LLM (Llama-3)
 
 
 
