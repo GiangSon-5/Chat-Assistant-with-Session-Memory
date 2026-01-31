@@ -61,13 +61,13 @@ class SessionMemoryManager:
 
         logger.info("Threshold exceeded. Triggering summarization...")
         
-        # [NEW] Lấy thời gian thực để đưa vào Prompt
+        # Lấy thời gian thực để đưa vào Prompt
         current_time_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         # Prepare prompt
         msgs_text = json.dumps(messages, ensure_ascii=False)
         
-        # [NEW] Prompt được cập nhật để chứa thời gian
+        # Prompt được cập nhật để chứa thời gian
         prompt_content = f"""
         Current Date & Time: {current_time_str}
         

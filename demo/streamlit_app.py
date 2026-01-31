@@ -3,7 +3,7 @@ import sys
 import json
 import logging
 from pathlib import Path
-from datetime import datetime  # <--- [NEW] Import datetime
+from datetime import datetime  
 
 # Add src to path
 sys.path.append(str(Path(__file__).resolve().parent.parent))
@@ -33,7 +33,7 @@ st.sidebar.title("⚙️ System Config")
 api_url = st.sidebar.text_input("LLM API URL (ngrok)", value=Config.LLM_API_BASE_URL)
 Config.LLM_API_BASE_URL = api_url 
 
-# [NEW] Dynamic Session ID Input
+# Dynamic Session ID Input
 custom_session_id = st.sidebar.text_input("Session ID", value=st.session_state.session_id)
 
 # Logic: Nếu người dùng đổi tên Session ID -> Reset lại bộ nhớ và tin nhắn hiển thị
@@ -162,7 +162,7 @@ if selected_tab == "💬 Chat Interface":
 
     # Handle User Input
     if prompt := st.chat_input("Type your query..."):
-        # [NEW] Capture Current Time
+        # Capture Current Time
         current_time = datetime.now().isoformat()
         
         # 1. Display user message first
@@ -266,7 +266,7 @@ if selected_tab == "💬 Chat Interface":
                 status.update(label="Complete!", state="complete", expanded=False)
 
         # 3. Output & Update State
-        # [NEW] Save timestamp to session history
+        # Save timestamp to session history
         st.session_state.messages.append({
             "role": "user", 
             "content": prompt,
