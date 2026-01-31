@@ -290,8 +290,7 @@ Load long conversation → Show context size increasing
    - Gán vào `st.session_state.messages`
    - Gọi `memory_manager.check_and_summarize()`
 3. **Output:**
-   - Toast: "Loaded 9 messages! ✅"
-   - Token count display (line 90)
+   - Toast: "Loaded 28 messages! ✅"
    - Toast: "Summarization Triggered! 🧠"
 4. **View Summary:**
    - Tab "💾 Memory & State" hiển thị JSON summary
@@ -328,8 +327,8 @@ Run ambiguous query → Show query rewriting
 
 1. **Input:** User nhập ambiguous query vào chat input
 2. **Pipeline Execution:**
-   - Step A: Check Memory (line 90-100)
-   - Step B: Query Understanding (line 105-112)
+   - Step A: Check Memory 
+   - Step B: Query Understanding 
      - `query_processor.process_query(prompt, history, memory_context)`
      - Returns `QueryAnalysis` với is_ambiguous, rewritten_query, etc.
    - Step C: Generate Response
@@ -343,7 +342,7 @@ Run ambiguous query → Show query rewriting
 **Kiểm chứng từ codebase:**
 
 ```python
-# streamlit_app.py line 105-112
+# streamlit_app.py 
 analysis = query_processor.process_query(prompt, st.session_state.messages, memory_context)
 
 if analysis.is_ambiguous:
