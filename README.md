@@ -4,6 +4,11 @@ Dự án này là một bản demo kỹ thuật (Technical Demo) xây dựng bac
 
 Hệ thống được thiết kế theo kiến trúc tách biệt Client-Server, sử dụng mô hình **Llama-3-8B-Instruct** và tuân thủ chặt chẽ việc kiểm soát đầu ra bằng **Structured Outputs (Pydantic Schema)**.
 
+<p align="center">
+  <img src="/imgs/flow.png" alt="Pipeline Flow" width="100%"/>
+</p>
+
+
 ---
 
 ## 🛠️ Yêu cầu hệ thống
