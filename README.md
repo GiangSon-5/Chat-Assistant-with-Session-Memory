@@ -24,7 +24,7 @@ Hệ thống hoạt động theo mô hình Client-Server:
 
 ### 1. Chuẩn bị Server (Google Colab)
 
-Mô hình Llama-3-8B yêu cầu GPU — thường chạy trên Google Colab và được expose bằng `ngrok`. Nếu bạn có template Colab, dùng nó; nếu không, bạn có hai lựa chọn:
+Mô hình Llama-3-8B yêu cầu GPU — chạy trên Google Colab và được expose bằng `ngrok`.
 
 - Chạy một server LLM có sẵn và đặt `LLM_API_BASE_URL` tới endpoint đó.
 
@@ -35,7 +35,7 @@ Nếu bạn sử dụng Colab, những bước chính là:
 
 > Hoặc dùng API của bạn (xem `Config.LLM_API_BASE_URL`) — Streamlit client sẽ kết nối tới URL đó.
 
-5. Chạy cell. Khi server khởi động thành công, bạn sẽ nhận được một URL dạng:
+3. Copy code trong *colab_server.ipynb* hoặc tải lên và chạy cell. Khi server khởi động thành công, bạn sẽ nhận được một URL dạng:
 
 ```text
 🚀 API BASE URL: https://xxxx-xx-xx-xx-xx.ngrok-free.app/v1
