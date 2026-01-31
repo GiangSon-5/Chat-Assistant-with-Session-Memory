@@ -29,7 +29,7 @@ Nếu bạn sử dụng Colab, những bước chính là:
 1. Tạo Notebook mới trên Colab và chọn Runtime → GPU (A100 nếu có).
 2. Thêm các biến/secret cần thiết vào notebook (ví dụ `HF_TOKEN`, `NGROK_TOKEN`) và khởi chạy server.
 
-> Nếu bạn không có Colab template sẵn: chỉ cần một server HTTP trả lời theo API (xem `Config.LLM_API_BASE_URL`) — Streamlit client sẽ kết nối tới URL đó.
+> Hoặc dùng API của bạn (xem `Config.LLM_API_BASE_URL`) — Streamlit client sẽ kết nối tới URL đó.
 
 5. Chạy cell. Khi server khởi động thành công, bạn sẽ nhận được một URL dạng:
 
