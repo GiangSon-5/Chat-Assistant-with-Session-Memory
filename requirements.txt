@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+pydantic
+requests
+streamlit
+python-dotenv
+tiktoken
+nest_asyncio
+pyngrok
+torch
+transformers
+accelerate
+groq

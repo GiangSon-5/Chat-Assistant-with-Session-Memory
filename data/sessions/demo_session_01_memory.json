@@ -1,0 +1,41 @@
+{
+  "session_summary": {
+    "user_profile": {
+      "preferences": [
+        "Python",
+        "backend engineering"
+      ],
+      "constraints": [
+        "performance",
+        "clean API design"
+      ]
+    },
+    "key_facts": [
+      "John is a software engineer working with Python",
+      "He builds APIs and data pipelines",
+      "He prefers FastAPI over Flask",
+      "He plans to build a chatbot for an internal tool",
+      "He's considering using Llama 3 model"
+    ],
+    "decisions": [],
+    "open_questions": [
+      "Should he use LangChain or build his own pipeline?",
+      "How to implement structured JSON output using Llama 3 and FastAPI?"
+    ],
+    "todos": [
+      "Check LangChain documentation",
+      "Implement validation and fallback mechanism for Llama 3 model"
+    ]
+  },
+  "message_range_summarized": {
+    "from_index": 0,
+    "to_index": 14,
+    "total_messages": 15,
+    "timestamp": "2026-01-31T09:05:01"
+  },
+  "metadata": {
+    "summary_version": "1.0",
+    "tokens_saved": 940,
+    "compression_ratio": 0.19
+  }
+}
