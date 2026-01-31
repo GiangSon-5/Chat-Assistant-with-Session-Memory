@@ -15,32 +15,51 @@ class QueryProcessor:
         
         history_text = json.dumps(recent_history[-5:], ensure_ascii=False) if recent_history else "[]"
         
-        # --- CẬP NHẬT PROMPT VỚI RUBRIC CHẤM ĐIỂM ---
+        # --- PROMPT: KẾT HỢP GIAO TIẾP + CODE INTENT ---
         system_prompt = """
         You are an expert Query Analyst for a RAG system.
         
-        YOUR GOAL:
+        YOUR GOALS:
         1. Resolve pronouns (he, she, it, that) in the USER QUERY using CHAT HISTORY.
-        2. Assign a 'confidence_score' based on the RUBRIC below.
+        2. Analyze if the query is Technical, Social, or Ambiguous.
+        3. **CRITICAL:** If the query is about PROGRAMMING, IMPLEMENTATION, or "HOW TO", append "Please provide code examples" to the 'rewritten_query'.
+        4. Assign a 'confidence_score' based on the RUBRIC below.
         
         === SCORE RUBRIC (How to judge confidence) ===
-        - 1.0 (Certain): The query names specific entities (e.g., "FastAPI", "PostgreSQL"). Or the context resolves 'it' uniquely without any doubt.
-        - 0.8 (Likely): You inferred the target from context, but there is a small chance of error (e.g., user switched topics recently).
+        - 1.0 (Certain): 
+             a) The query names specific entities (e.g., "FastAPI", "PostgreSQL").
+             b) OR The query asks for CODE/IMPLEMENTATION (e.g., "How do I write a loop?").
+             c) OR The query is a CLEAR GREETING or SELF-INTRO (e.g., "Hi", "Hello", "My name is Son").
+        - 0.8 (Likely): You inferred the target from context, but there is a small chance of error.
         - 0.5 (Unsure): The pronoun could refer to multiple things in history.
         - 0.1 (Guessing): No context available to resolve the ambiguity.
 
-        EXAMPLE INPUT:
-        History: [{"role": "user", "content": "I use Llama 3."}]
-        Query: "Is it fast?"
-        
-        EXAMPLE OUTPUT (JSON):
-        {
-            "original_query": "Is it fast?",
+        === EXAMPLES FOR TRAINING ===
+
+        -- Example 1: Coding Question (Add Code Request) --
+        History: [{"role": "user", "content": "I want to build an API."}]
+        Query: "How to start?"
+        Output: {
+            "original_query": "How to start?",
             "is_ambiguous": true,
-            "rewritten_query": "Is Llama 3 fast?",
+            "rewritten_query": "How to start building an API? Please provide code examples.",
             "confidence_score": 0.9, 
             "requires_clarification": false, 
-            "ambiguity_reasons": ["'it' refers to Llama 3"],
+            "ambiguity_reasons": ["Inferred 'it' is API", "User wants implementation details"],
+            "needed_context_from_memory": [],
+            "clarifying_questions": []
+        }
+
+        -- Example 2: Social / Greeting (Keep Natural) --
+        History: []
+        Query: "Hi, my name is Son"
+        Output: {
+            "original_query": "Hi, my name is Son",
+            "is_ambiguous": false,
+            "rewritten_query": "Hi, my name is Son",
+            "confidence_score": 1.0,
+            "requires_clarification": false,
+            "ambiguity_reasons": ["User is introducing themselves"],
             "needed_context_from_memory": [],
             "clarifying_questions": []
         }
@@ -73,7 +92,7 @@ class QueryProcessor:
             raw_output = self.llm.chat_completion(messages, json_mode=True)
             analysis = self.llm.validate_json_output(raw_output, QueryAnalysis)
             
-            # --- CÁC LOGIC  ---
+            # --- CÁC LOGIC FALLBACK ---
             if not analysis.rewritten_query or not analysis.rewritten_query.strip():
                 analysis.rewritten_query = query
             

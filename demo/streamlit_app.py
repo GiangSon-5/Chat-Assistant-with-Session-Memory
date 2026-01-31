@@ -52,6 +52,20 @@ memory_manager = SessionMemoryManager(st.session_state.session_id, llm_client)
 query_processor = QueryProcessor(llm_client)
 token_counter = TokenCounter()
 
+st.sidebar.divider()
+st.sidebar.subheader("📊 Token Monitor")
+
+# Tính toán token hiện tại
+current_token_count = token_counter.count_messages(st.session_state.messages)
+
+usage_percent = min(current_token_count / threshold, 1.0)
+st.sidebar.progress(usage_percent, text=f"Used: {current_token_count} / {threshold} tokens")
+
+if current_token_count >= threshold:
+    st.sidebar.error("⚠️ Memory Full! Summarization needed.")
+else:
+    st.sidebar.caption("🟢 Memory Healthy")
+
 # --- CSS Styling (Fix Dark Mode/Light Mode) ---
 st.markdown(
     """
